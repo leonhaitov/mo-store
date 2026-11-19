@@ -1,3 +1,4 @@
+using MO.Store.Api.Catalog;
 using MO.Store.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,5 +18,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapProductEndpoints();
 
 app.Run();
