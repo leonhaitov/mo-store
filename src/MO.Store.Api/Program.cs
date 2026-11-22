@@ -1,5 +1,7 @@
 using MO.Store.Api.Catalog;
 using MO.Store.Infrastructure;
+using MO.Store.Infrastructure.Persistence;
+using MO.Store.Infrastructure.Persistence.Seeding;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+
+    await using var scoped = app.Services.CreateAsyncScope();
+
+    var db = scoped.ServiceProvider.GetRequiredService<StoreDbContext>();
+    await DevDataSeeder.SeedAsync(db);
 }
 
 app.UseHttpsRedirection();
