@@ -1,1 +1,5 @@
 @MO.Store.Api_HostAddress = http://localhost:5100
+
+### Get all active products
+GET {{MO.Store.Api_HostAddress}}/api/products
+Accept: application/json
